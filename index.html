@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div data-role="page">
+        <div data-role="header">
+            <h1>Feedback Form</h1>
+        </div>
+
+        <div data-role="content">
+            <form id="feedbackForm">
+                <div data-role="fieldcontain">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label for="comment">Feedback:</label>
+                    <textarea id="comment" name="comment"></textarea>
+                </div>
+
+                <div data-role="fieldcontain">
+                    <label for="toggle">Was it easy to find what you were looking for on the website?:</label>
+                    <select id="toggle" name="toggle" data-role="slider">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="toggle">Have our website pop-ups made you aware of new discounts on product
+                        name</label>
+                    <select id="toggle1" name="toggle1" data-role="slider">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="toggle"> Do you relate to our mission and vision statement?</label>
+                    <select id="toggle2" name="toggle2" data-role="slider">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="toggle">Are our customer representatives polite</label>
+                    <select id="toggle3" name="toggle3" data-role="slider">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="toggle"> Do you relate to our mission and vision statement?</label>
+                    <select id="toggle4" name="toggle4" data-role="slider">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </select>
+                </div>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        $(document).on("pagecreate", function () {
+            $("#feedbackForm").submit(function (e) {
+                e.preventDefault(); // Prevent form submission
+
+                // Get form values
+                let name = $("#name").val();
+                let email = $("#email").val();
+                let comment = $("#comment").val();
+                let toggle = $("#toggle").val();
+                let toggle1 = $("#toggle1").val();
+                let toggle2 = $("#toggle2").val();
+                let toggle3 = $("#toggle3").val();
+                let toggle4 = $("#toggle4").val();
+
+                // Create feedback object
+                var feedback = {
+                    name: name,
+                    email: email,
+                    comment: comment,
+                    toggle: toggle,
+                    toggle1: toggle1,
+                    toggle2: toggle2,
+                    toggle3: toggle3,
+                    toggle4: toggle4
+                };
+
+                // Save feedback to local storage
+                localStorage.setItem("feedback", JSON.stringify(feedback));
+
+                alert("Feedback submitted!");
+
+                // Clear form fields
+                $("#feedbackForm")[0].reset();
+            });
+        });
+    </script>
+</body>
+
+</html>
